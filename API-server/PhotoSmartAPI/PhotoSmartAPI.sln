@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSmart.API", "PhotoSmartAPI\PhotoSmart.API.csproj", "{333A0E8F-B8BF-4CCB-983D-40903AF0FDB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSmart.Core", "PhotoSmart.Core\PhotoSmart.Core.csproj", "{1251FEBA-2AE6-4F9E-9B87-3BCDE481056F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSmart.Data", "PhotoSmart.Data\PhotoSmart.Data.csproj", "{F369071B-6CCD-4383-A1BA-FA4BF452E8ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSmart.Service", "PhotoSmart.Service\PhotoSmart.Service.csproj", "{E7AE28CB-FABB-4226-AD79-913CBD45E525}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{333A0E8F-B8BF-4CCB-983D-40903AF0FDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333A0E8F-B8BF-4CCB-983D-40903AF0FDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333A0E8F-B8BF-4CCB-983D-40903AF0FDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333A0E8F-B8BF-4CCB-983D-40903AF0FDB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1251FEBA-2AE6-4F9E-9B87-3BCDE481056F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1251FEBA-2AE6-4F9E-9B87-3BCDE481056F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1251FEBA-2AE6-4F9E-9B87-3BCDE481056F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1251FEBA-2AE6-4F9E-9B87-3BCDE481056F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F369071B-6CCD-4383-A1BA-FA4BF452E8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F369071B-6CCD-4383-A1BA-FA4BF452E8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F369071B-6CCD-4383-A1BA-FA4BF452E8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F369071B-6CCD-4383-A1BA-FA4BF452E8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7AE28CB-FABB-4226-AD79-913CBD45E525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7AE28CB-FABB-4226-AD79-913CBD45E525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7AE28CB-FABB-4226-AD79-913CBD45E525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7AE28CB-FABB-4226-AD79-913CBD45E525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E70CCF5-EF1A-464B-B8FD-733FF0F48FF4}
+	EndGlobalSection
+EndGlobal
