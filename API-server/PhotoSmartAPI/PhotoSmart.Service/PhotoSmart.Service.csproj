@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoSmart.Core\PhotoSmart.Core.csproj" />
+  </ItemGroup>
+
 </Project>
