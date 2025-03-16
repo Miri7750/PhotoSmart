@@ -1,46 +1,8 @@
-//namespace PhotoSmart.API
-//{
-//    public class Program
-//    {
-//        public static void Main(string[] args)
-//        {
-//            var builder = WebApplication.CreateBuilder(args);
-
-//            // Add services to the container.
-
-//            builder.Services.AddControllers();
-//            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-//            builder.Services.AddOpenApi();
-
-//            var app = builder.Build();
-
-//            // Configure the HTTP request pipeline.
-//            if (app.Environment.IsDevelopment())
-//            {
-//                app.MapOpenApi();
-//            }
-
-//            app.UseHttpsRedirection();
-
-//            app.UseAuthorization();
 
 
-//            app.MapControllers();
-
-//            app.Run();
-//        }
-//    }
-//}
-
-
-
-//if (app.Environment.IsDevelopment())
-//{
-//    app.MapOpenApi();
-//}
-
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore.Migrations;
 using PhotoSmart.Core.IRepositories;
 using PhotoSmart.Core.IServices;
 using PhotoSmart.Data;
@@ -49,13 +11,7 @@ using PhotoSmart.Service.Services;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-//services.AddDbContext<PhotoSmartContext>(options =>
-//       options.UseMySql("YourConnectionStringHere", new MySqlServerVersion(new Version(8, 0, 21))));
-//var connectionString = "server=localhost;database=photo_smart_db;user=root;password=1234";
-var connectionString = builder.Configuration.GetConnectionString("PhotoSmartDB");
-builder.Services.AddDbContext<PhotoSmartContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
-    mysqlOptions => mysqlOptions.CommandTimeout(60)));
+
 
 
 
@@ -63,15 +19,37 @@ builder.Services.AddDbContext<PhotoSmartContext>(options =>
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IPhotoRepository, PhotoRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<AlbumService>();
-builder.Services.AddScoped<PhotoService>();
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
+
+builder.Services.AddScoped<IAlbumService, AlbumService>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<ITagService,TagService>();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-//builder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
-//    mysqlOptions => mysqlOptions.CommandTimeout(60));
+var connetionString = builder.Configuration.GetConnectionString("PhotoShareContext");  
+//var connetionString = "server=localhost;database=photo_share_db;user=root;password=1234;";
+builder.Services.AddDbContext<PhotoShareContext>(options =>
+    options.UseMySql(connetionString, ServerVersion.AutoDetect(connetionString),options=>options.CommandTimeout(60)));
+
+
+//services.AddAutoMapper(typeof(MappingProfile), typeof(MappingPostProfile));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -94,3 +72,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
