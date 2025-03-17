@@ -46,5 +46,11 @@ namespace PhotoSmart.Api.Controllers
             }
             return Ok(user);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            await _userService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PhotoSmart.Api.PostModels;
 using PhotoSmart.Core.DTOs;
+using PhotoSmart.Core.Models;
 
 namespace PhotoSmart.Api
 {

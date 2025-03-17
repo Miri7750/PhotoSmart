@@ -1,6 +1,7 @@
-﻿using PhotoSmart.Core.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PhotoSmart.Core.DTOs;
+using PhotoSmart.Core.IRepositories;
 using PhotoSmart.Core.Models;
-using PhotoSmart.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace PhotoSmart.Data.Repositories
     {
         public PhotoRepository(PhotoSmartContext context) : base(context)
         {
+
         }
+      
     }
 
 }

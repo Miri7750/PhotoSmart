@@ -11,7 +11,7 @@ namespace PhotoSmart.Core.IServices
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task CreateAsync(T tag);
+        Task<T> CreateAsync(T tag);
         Task UpdateAsync(T tag);
         Task DeleteAsync(int id);
 

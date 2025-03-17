@@ -1,7 +1,8 @@
 ﻿//using Microsoft.EntityFrameworkCore;//??
+using Microsoft.EntityFrameworkCore;
+using PhotoSmart.Core.DTOs;
 using PhotoSmart.Core.IRepositories;
 using PhotoSmart.Core.Models;
-using PhotoSmart.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace PhotoSmart.Data.Repositories
     {
         public AlbumRepository(PhotoSmartContext context) : base(context)
         {
+        }
+        public async Task<Album> GetAlbumIncludePhotosAsync(int albumId)
+        {
+            return await _dbSet.Include(a => a.Photos).Where(a => a.Id == albumId).FirstOrDefaultAsync();
+
         }
     }
 

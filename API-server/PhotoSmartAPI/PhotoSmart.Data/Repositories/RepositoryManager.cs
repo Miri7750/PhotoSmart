@@ -1,5 +1,4 @@
 ﻿using PhotoSmart.Core.IRepositories;
-using PhotoSmart.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
-    internal class RepositoryManager : IRepositoryManager
+    public class RepositoryManager : IRepositoryManager
     {
-        PhotoSmartContext _PhotoSmartContext;
+        PhotoSmartContext _photoShareContext;
 
-        public IAlbumRepository Album {  get; }
+        public IAlbumRepository Album { get; }
 
-        public IPhotoRepository Photo {  get; }
+        public IPhotoRepository Photo { get; }
 
-        public IUserRepository User {  get; }
+        public IUserRepository User { get; }
 
-        public ITagRepository Tag {  get; }
+        public ITagRepository Tag { get; }
 
-        RepositoryManager(PhotoSmartContext PhotoSmartContext, IAlbumRepository album, IPhotoRepository photo, IUserRepository user, ITagRepository tag)
+        public RepositoryManager(PhotoSmartContext photoShareContext, IAlbumRepository album, IPhotoRepository photo, IUserRepository user, ITagRepository tag)
         {
-            _PhotoSmartContext = PhotoSmartContext;
+            _photoShareContext = photoShareContext;
             Album = album;
             Photo = photo;
             User = user;
@@ -30,7 +29,7 @@ namespace PhotoSmart.Data.Repositories
         }
         public async Task SaveAsync()
         {
-            await _PhotoSmartContext.SaveChangesAsync();
+            await _photoShareContext.SaveChangesAsync();
         }
     }
 }

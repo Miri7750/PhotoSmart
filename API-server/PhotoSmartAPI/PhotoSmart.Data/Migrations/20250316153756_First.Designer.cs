@@ -12,8 +12,8 @@ using PhotoSmart.Data;
 namespace PhotoSmart.Data.Migrations
 {
     [DbContext(typeof(PhotoSmartContext))]
-    [Migration("20250312140746_first")]
-    partial class first
+    [Migration("20250316153756_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

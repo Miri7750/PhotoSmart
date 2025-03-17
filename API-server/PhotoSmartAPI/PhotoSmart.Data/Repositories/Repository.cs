@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhotoSmart.Core.IRepositories;
-using PhotoSmart.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +11,16 @@ namespace PhotoSmart.Data.Repositories
     public class Repository<T> : IRepository<T> where T : class
     {
 
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(PhotoSmartContext context)
         {
             _dbSet = context.Set<T>();
         }
-        public async Task AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+           var res= await _dbSet.AddAsync(entity);
+            return res.Entity;
         }
 
         public async Task DeleteAsync(int id)
@@ -39,12 +39,14 @@ namespace PhotoSmart.Data.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
-           return await GetByIdAsync(id);
+          var entity = await _dbSet.FindAsync(id);
+            return entity;
         }
 
         public async Task UpdateAsync(T entity)
         {
             await UpdateAsync(entity);
         }
+        
     }
 }

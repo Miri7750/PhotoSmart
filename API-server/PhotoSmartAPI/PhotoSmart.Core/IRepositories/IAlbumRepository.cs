@@ -1,4 +1,5 @@
-﻿using PhotoSmart.Core.Models;
+﻿using PhotoSmart.Core.DTOs;
+using PhotoSmart.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace PhotoSmart.Core.IRepositories
 {
     public interface IAlbumRepository : IRepository<Album>
     {
-
+        Task<Album> GetAlbumIncludePhotosAsync(int albumId);
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using PhotoSmart.Core.IRepositories;
+﻿using PhotoSmart.Core.DTOs;
+using PhotoSmart.Core.IRepositories;
 using PhotoSmart.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Core.IServices
 {
-    public interface IAlbumService: IService<Album>
+    public interface IAlbumService: IService<AlbumDto>
     {
        
     }

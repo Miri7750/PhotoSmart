@@ -1,4 +1,5 @@
-﻿using PhotoSmart.Core.Models;
+﻿using PhotoSmart.Core.DTOs;
+using PhotoSmart.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Core.IServices
 {
-    public interface ITagService:IService<Tag>
+    public interface ITagService:IService<TagDto>
     {
      
     }
