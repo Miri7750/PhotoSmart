@@ -21,14 +21,6 @@ namespace PhotoSmart.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> RegisterUser([FromBody] UserPostModel userPostModel)
-        {
-            var userDto = _mapper.Map<UserDto>(userPostModel);
-            var createdUser = await _userService.RegisterUser(userDto);
-            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {

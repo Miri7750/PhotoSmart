@@ -9,5 +9,7 @@ namespace PhotoSmart.Core.IRepositories
 {
     public interface IUserRepository : IRepository<User>
     {
+        Task<User> GetByUserEmailAsync(string username);
+
     }
 }

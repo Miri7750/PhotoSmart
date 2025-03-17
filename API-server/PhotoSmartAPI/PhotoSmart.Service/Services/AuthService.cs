@@ -25,9 +25,9 @@ namespace PhotoSmart.Service.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
-        {
+            {
             new Claim(ClaimTypes.Name, username)
-        };
+            };
 
             // הוספת תפקידים כ-Claims
             foreach (var role in roles)
