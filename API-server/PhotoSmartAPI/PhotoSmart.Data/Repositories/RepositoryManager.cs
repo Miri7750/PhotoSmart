@@ -7,25 +7,31 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
+    /// <summary>
+    /// ///
+    /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
         PhotoSmartContext _photoShareContext;
 
-        public IAlbumRepository Album { get; }
+        public IEventRepository Event { get; }
 
         public IPhotoRepository Photo { get; }
 
         public IUserRepository User { get; }
 
-        public ITagRepository Tag { get; }
+        public IGuestRepository Guest { get; }
 
-        public RepositoryManager(PhotoSmartContext photoShareContext, IAlbumRepository album, IPhotoRepository photo, IUserRepository user, ITagRepository tag)
+        public IAuthRepository Auth { get; }
+
+        public RepositoryManager(PhotoSmartContext photoShareContext, IEventRepository eventRepository, IPhotoRepository photo, IUserRepository user, IGuestRepository guest, IAuthRepository auth)
         {
             _photoShareContext = photoShareContext;
-            Album = album;
+            Event = eventRepository;
             Photo = photo;
             User = user;
-            Tag = tag;
+            Guest = guest;
+            Auth = auth;
         }
         public async Task SaveAsync()
         {

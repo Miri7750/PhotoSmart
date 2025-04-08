@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Core.IRepositories
 {
-    public interface ITagRepository : IRepository<Tag>
+    public interface IGuestRepository : IRepository<Guest>
     {
     }
 }

@@ -9,48 +9,48 @@ using PhotoSmart.Service.Services;
 namespace PhotoSmart.Api.Controllers
 {
     [ApiController]
-    [Route("api/tags")]
-    public class TagController : ControllerBase
+    [Route("api/guests")]
+    public class GuestController : ControllerBase
     {
-        private readonly ITagService _tagService;
+        private readonly IGuestService _guestService;
         private readonly IMapper _mapper;
 
-        public TagController(ITagService tagService, IMapper mapper)
+        public GuestController(IGuestService guestService, IMapper mapper)
         {
-            _tagService = tagService;
+            _guestService = guestService;
             _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTag([FromBody] TagPostModel tagPostModel)
+        public async Task<IActionResult> CreateGuest([FromBody] GuestPostModel guestPostModel)
         {
-            var tagDto = _mapper.Map<TagDto>(tagPostModel);
-            var createdTag = await _tagService.CreateAsync(tagDto);
-            return CreatedAtAction(nameof(GetTagById), new { id = createdTag.Id }, createdTag);
+            var guestDto = _mapper.Map<GuestDto>(guestPostModel);
+            var createdGuest = await _guestService.CreateAsync(guestDto);
+            return CreatedAtAction(nameof(GetGuestById), new { id = createdGuest.Id }, createdGuest);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTags()
+        public async Task<IActionResult> GetAllGuests()
         {
-            var tags = await _tagService.GetAllAsync();
-            return Ok(tags);
+            var guests = await _guestService.GetAllAsync();
+            return Ok(guests);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTagById(int id)
+        public async Task<IActionResult> GetGuestById(int id)
         {
-            var tag = await _tagService.GetByIdAsync(id);
-            if (tag == null)
+            var guest = await _guestService.GetByIdAsync(id);
+            if (guest == null)
             {
                 return NotFound();
             }
-            return Ok(tag);
+            return Ok(guest);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTag(int id)
+        public async Task<IActionResult> DeleteGuest(int id)
         {
-            await _tagService.DeleteAsync(id);
+            await _guestService.DeleteAsync(id);
             return NoContent();
         }
     }

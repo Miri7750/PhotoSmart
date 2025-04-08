@@ -11,7 +11,7 @@ public partial class Photo
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    public int? UserId { get; set; }
+    public int EventId { get; set; }
 
     public string Url { get; set; } = null!;
 
@@ -21,9 +21,9 @@ public partial class Photo
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual Event Event { get; set; } = null!;
 
-    public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
 
-    public virtual ICollection<Tag> Tags { get; set; } = new List<Tag>();
+    public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+    public int UserId { get; set; }
 }

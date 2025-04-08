@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
+    /// <summary>
+    /// ///
+    /// </summary>
     public class AuthRepository:IAuthRepository
     {
         private readonly DbSet<User> _users;

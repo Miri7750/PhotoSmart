@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Core.DTOs
 {
-    public class TagDto
+    public class RegisterResponseDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int UserId { get; set; }
+        public string Message { get; set; }
+        public string Token { get; set; }
     }
 }

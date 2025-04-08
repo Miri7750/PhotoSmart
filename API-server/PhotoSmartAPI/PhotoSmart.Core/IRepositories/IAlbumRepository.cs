@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Core.IRepositories
 {
-    public interface IAlbumRepository : IRepository<Album>
+    public interface IEventRepository : IRepository<Event>
     {
-        Task<Album> GetAlbumIncludePhotosAsync(int albumId);
+        Task<Event> GetEventIncludePhotosAsync(int eventId);
         
     }
 }

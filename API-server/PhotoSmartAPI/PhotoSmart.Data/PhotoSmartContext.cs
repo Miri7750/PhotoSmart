@@ -13,15 +13,20 @@ public class PhotoSmartContext : DbContext
 
     }
 
-    public virtual DbSet<Album> Albums { get; set; }
-
-    public virtual DbSet<Photo> Photos { get; set; }
-
-    public virtual DbSet<Tag> Tags { get; set; }
-
-    public virtual DbSet<User> Users { get; set; }
-
-}
    
+    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Permission> Permissions { get; set; }
+public DbSet<User> Users { get; set; }
+
+    public DbSet<Event> Events { get; set; }
+
+    public DbSet<Photo> Photos { get; set; }
+
+    public DbSet<Guest> Guests { get; set; }
 
     
+
+
+}
+
+

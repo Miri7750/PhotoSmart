@@ -63,11 +63,11 @@ namespace PhotoSmart.Service.Services
                     await _repositoryManager.Photo.DeleteAsync(photo.Id);
                 }
 
-                // Delete all albums associated with the user
-                var albums = await _repositoryManager.Album.GetAllAsync();
-                foreach (var album in albums.Where(a => a.UserId == id))
+                // Delete all events associated with the user
+                var events = await _repositoryManager.Event.GetAllAsync();
+                foreach (var Event in events.Where(a => a.UserId == id))
                 {
-                    await _repositoryManager.Album.DeleteAsync(album.Id);
+                    await _repositoryManager.Event.DeleteAsync(Event.Id);
                 }
 
                 // Delete the user
@@ -76,6 +76,15 @@ namespace PhotoSmart.Service.Services
             }
         }
 
+        public Task<UserDto> GetUserByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateUserRoleAsync(int userId, string role)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

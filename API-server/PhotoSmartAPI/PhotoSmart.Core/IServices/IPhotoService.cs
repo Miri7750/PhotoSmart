@@ -10,7 +10,9 @@ namespace PhotoSmart.Core.IServices
 {
     public interface IPhotoService : IService<PhotoDto>
     {
-        Task<IEnumerable<PhotoDto>> GetPhotosByAlbumId(int albumId);
+        //Task<IEnumerable<PhotoDto>> GetPhotosByEventId(int eventId);
+        Task<IEnumerable<PhotoDto>> GetPhotosByEventIdAsync(int eventId);
+
         Task UploadPhoto(PhotoDto photoDto);
     }
 }

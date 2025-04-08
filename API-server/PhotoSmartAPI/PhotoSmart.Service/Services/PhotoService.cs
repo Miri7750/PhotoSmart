@@ -84,9 +84,9 @@ namespace PhotoSmart.Service.Services
             }
         }
 
-        public async Task<IEnumerable<PhotoDto>> GetPhotosByAlbumId(int albumId)
+        public async Task<IEnumerable<PhotoDto>> GetPhotosByEventId(int eventId)
         {
-            var photos = (await _repositoryManager.Album.GetAlbumIncludePhotosAsync(albumId)).Photos;
+            var photos = (await _repositoryManager.Event.GetEventIncludePhotosAsync(eventId)).Photos;
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
 
@@ -120,6 +120,10 @@ namespace PhotoSmart.Service.Services
             await _repositoryManager.Photo.DeleteAsync(id);
         }
 
+        public Task<IEnumerable<PhotoDto>> GetPhotosByEventIdAsync(int eventId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

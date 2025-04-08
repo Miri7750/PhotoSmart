@@ -12,7 +12,7 @@ using PhotoSmart.Data;
 namespace PhotoSmart.Data.Migrations
 {
     [DbContext(typeof(PhotoSmartContext))]
-    [Migration("20250316153756_First")]
+    [Migration("20250330023809_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -25,22 +25,7 @@ namespace PhotoSmart.Data.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("AlbumPhoto", b =>
-                {
-                    b.Property<int>("AlbumsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PhotosId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlbumsId", "PhotosId");
-
-                    b.HasIndex("PhotosId");
-
-                    b.ToTable("AlbumPhoto");
-                });
-
-            modelBuilder.Entity("PhotoSmart.Core.Models.Album", b =>
+            modelBuilder.Entity("Guest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,14 +33,80 @@ namespace PhotoSmart.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CoverImageId")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("Face")
+                        .HasColumnType("longblob");
+
+                    b.Property<string>("FaceUrl")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("Guests");
+                });
+
+            modelBuilder.Entity("GuestPhoto", b =>
+                {
+                    b.Property<int>("GuestsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhotosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GuestsId", "PhotosId");
+
+                    b.HasIndex("PhotosId");
+
+                    b.ToTable("GuestPhoto");
+                });
+
+            modelBuilder.Entity("PermissionRole", b =>
+                {
+                    b.Property<int>("PermissionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PermissionsId", "RolesId");
+
+                    b.HasIndex("RolesId");
+
+                    b.ToTable("PermissionRole");
+                });
+
+            modelBuilder.Entity("PhotoSmart.Core.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("EventDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -71,7 +122,34 @@ namespace PhotoSmart.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Albums");
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("PhotoSmart.Core.Models.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions");
                 });
 
             modelBuilder.Entity("PhotoSmart.Core.Models.Photo", b =>
@@ -85,6 +163,9 @@ namespace PhotoSmart.Data.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -95,17 +176,17 @@ namespace PhotoSmart.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("EventId");
 
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("PhotoSmart.Core.Models.Tag", b =>
+            modelBuilder.Entity("PhotoSmart.Core.Models.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +197,11 @@ namespace PhotoSmart.Data.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -125,7 +210,7 @@ namespace PhotoSmart.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("PhotoSmart.Core.Models.User", b =>
@@ -155,9 +240,6 @@ namespace PhotoSmart.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -166,26 +248,37 @@ namespace PhotoSmart.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PhotoTag", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("FilesId")
+                    b.Property<int>("RolesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
+                    b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.HasKey("FilesId", "TagsId");
+                    b.HasKey("RolesId", "UsersId");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("UsersId");
 
-                    b.ToTable("PhotoTag");
+                    b.ToTable("RoleUser");
                 });
 
-            modelBuilder.Entity("AlbumPhoto", b =>
+            modelBuilder.Entity("Guest", b =>
                 {
-                    b.HasOne("PhotoSmart.Core.Models.Album", null)
+                    b.HasOne("PhotoSmart.Core.Models.Event", "Event")
+                        .WithMany("Guests")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("GuestPhoto", b =>
+                {
+                    b.HasOne("Guest", null)
                         .WithMany()
-                        .HasForeignKey("AlbumsId")
+                        .HasForeignKey("GuestsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -196,10 +289,25 @@ namespace PhotoSmart.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PhotoSmart.Core.Models.Album", b =>
+            modelBuilder.Entity("PermissionRole", b =>
+                {
+                    b.HasOne("PhotoSmart.Core.Models.Permission", null)
+                        .WithMany()
+                        .HasForeignKey("PermissionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PhotoSmart.Core.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PhotoSmart.Core.Models.Event", b =>
                 {
                     b.HasOne("PhotoSmart.Core.Models.User", "User")
-                        .WithMany("Albums")
+                        .WithMany("Events")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -207,33 +315,40 @@ namespace PhotoSmart.Data.Migrations
 
             modelBuilder.Entity("PhotoSmart.Core.Models.Photo", b =>
                 {
-                    b.HasOne("PhotoSmart.Core.Models.User", "User")
+                    b.HasOne("PhotoSmart.Core.Models.Event", "Event")
                         .WithMany("Photos")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("PhotoTag", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("PhotoSmart.Core.Models.Photo", null)
+                    b.HasOne("PhotoSmart.Core.Models.Role", null)
                         .WithMany()
-                        .HasForeignKey("FilesId")
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PhotoSmart.Core.Models.Tag", null)
+                    b.HasOne("PhotoSmart.Core.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("TagsId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PhotoSmart.Core.Models.Event", b =>
+                {
+                    b.Navigation("Guests");
+
+                    b.Navigation("Photos");
                 });
 
             modelBuilder.Entity("PhotoSmart.Core.Models.User", b =>
                 {
-                    b.Navigation("Albums");
-
-                    b.Navigation("Photos");
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }

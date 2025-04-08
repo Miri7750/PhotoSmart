@@ -11,64 +11,68 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Service.Services
 {
-    public class AlbumService : IAlbumService
+    public class EventService : IEventService
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
 
-        public AlbumService(IRepositoryManager repositoryManager, IMapper mapper)
+        public EventService(IRepositoryManager repositoryManager, IMapper mapper)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
         }
 
-        public async Task<AlbumDto> CreateAlbum(AlbumDto albumDto)
+        public async Task<EventDto> CreateEvent(EventDto eventDto)
         {
-            var album = _mapper.Map<Album>(albumDto);
-           var res= await _repositoryManager.Album.AddAsync(album);
-            return _mapper.Map<AlbumDto>(res);
+            var newEvent = _mapper.Map<Event>(eventDto);
+           var res= await _repositoryManager.Event.AddAsync(newEvent);
+            return _mapper.Map<EventDto>(res);
         }
 
-        public async Task<IEnumerable<AlbumDto>> GetAllAlbums()
+        public async Task<IEnumerable<EventDto>> GetAllEvents()
         {
-            var albums = await _repositoryManager.Album.GetAllAsync();
-            return albums.Select(a => new AlbumDto
+            var events = await _repositoryManager.Event.GetAllAsync();
+            return events.Select(a => new EventDto
             {
                 Id = a.Id,
                 Title = a.Title,
                 Description = a.Description
             });
         }
-        public async Task<IEnumerable<AlbumDto>> GetAllAsync()
+        public async Task<IEnumerable<EventDto>> GetAllAsync()
         {
-            var albums = await _repositoryManager.Album.GetAllAsync();
-            return _mapper.Map<IEnumerable<AlbumDto>>(albums);
+            var events = await _repositoryManager.Event.GetAllAsync();
+            return _mapper.Map<IEnumerable<EventDto>>(events);
         }
 
-        public async Task<AlbumDto> GetByIdAsync(int id)
+        public async Task<EventDto> GetByIdAsync(int id)
         {
-            var album = await _repositoryManager.Album.GetByIdAsync(id);
-            return _mapper.Map<AlbumDto>(album);
+            var eventRes = await _repositoryManager.Event.GetByIdAsync(id);
+            return _mapper.Map<EventDto>(eventRes);
         }
 
-        public async Task<AlbumDto> CreateAsync(AlbumDto albumDto)
+        public async Task<EventDto> CreateAsync(EventDto eventDto)
         {
-            var album = _mapper.Map<Album>(albumDto);
-           var res= await _repositoryManager.Album.AddAsync(album);
-            return _mapper.Map<AlbumDto>(res);
+            var newEvent = _mapper.Map<Event>(eventDto);
+           var res= await _repositoryManager.Event.AddAsync(newEvent);
+            return _mapper.Map<EventDto>(res);
         }
 
-        public async Task UpdateAsync(AlbumDto albumDto)
+        public async Task UpdateAsync(EventDto eventDto)
         {
-            var album = _mapper.Map<Album>(albumDto);
-            await _repositoryManager.Album.UpdateAsync(album);
+            var newEvent = _mapper.Map<Event>(eventDto);
+            await _repositoryManager.Event.UpdateAsync(newEvent);
         }
 
         public async Task DeleteAsync(int id)
         {
-            await _repositoryManager.Album.DeleteAsync(id);
+            await _repositoryManager.Event.DeleteAsync(id);
         }
 
+        public Task<IEnumerable<EventDto>> GetEventsByUserIdAsync(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
+    /// <summary>
+    /// ///
+    /// </summary>
     public class PhotoRepository : Repository<Photo>, IPhotoRepository
     {
         public PhotoRepository(PhotoSmartContext context) : base(context)

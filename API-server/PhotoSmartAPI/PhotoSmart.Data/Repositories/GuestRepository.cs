@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
-    public class TagRepository : Repository<Tag>, ITagRepository
+    /// <summary>
+    /// ///
+    /// </summary>
+    public class GuestRepository : Repository<Guest>, IGuestRepository
     {
-        public TagRepository(PhotoSmartContext context) : base(context)
+        public GuestRepository(PhotoSmartContext context) : base(context)
         {
 
         }

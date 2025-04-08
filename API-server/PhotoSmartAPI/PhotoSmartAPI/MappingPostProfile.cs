@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PhotoSmart.Api.PostModels;
+using PhotoSmart.Api.PostModels;
 using PhotoSmart.Core.DTOs;
 using PhotoSmart.Core.Models;
 
@@ -10,9 +11,11 @@ namespace PhotoSmart.Api
         public MappingPostProfile()
         {
             CreateMap<PhotoPostModel, PhotoDto>();
-            CreateMap<AlbumPostModel, AlbumDto>();
-            CreateMap<TagPostModel, TagDto>();
-            CreateMap<UserPostModel, UserDto>();
+            CreateMap<EventPostModel, EventDto>();
+            CreateMap<GuestPostModel, GuestDto>();
+            //CreateMap<UserPostModel, UserDto>();
+            CreateMap<UserRegisterPostModel, UserDto>();
+            CreateMap<UserLoginPostModel, UserDto>();
         }
     }
 }

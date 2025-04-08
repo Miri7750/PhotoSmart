@@ -11,14 +11,17 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
-    public class AlbumRepository : Repository<Album>, IAlbumRepository
+    /// <summary>
+    /// ///
+    /// </summary>
+    public class EventRepository : Repository<Event>, IEventRepository
     {
-        public AlbumRepository(PhotoSmartContext context) : base(context)
+        public EventRepository(PhotoSmartContext context) : base(context)
         {
         }
-        public async Task<Album> GetAlbumIncludePhotosAsync(int albumId)
+        public async Task<Event> GetEventIncludePhotosAsync(int eventId)
         {
-            return await _dbSet.Include(a => a.Photos).Where(a => a.Id == albumId).FirstOrDefaultAsync();
+            return await _dbSet.Include(a => a.Photos).Where(a => a.Id == eventId).FirstOrDefaultAsync();
 
         }
     }

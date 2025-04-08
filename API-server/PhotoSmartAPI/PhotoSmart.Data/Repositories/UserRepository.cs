@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace PhotoSmart.Data.Repositories
 {
+    /// <summary>
+    /// ///
+    /// </summary>
     public class UserRepository : Repository<User> ,IUserRepository
     {
         public UserRepository(PhotoSmartContext context) : base(context)

@@ -44,10 +44,10 @@ namespace PhotoSmart.Api.Controllers
             }
         }
 
-        [HttpGet("{albumId}")]
-        public async Task<IActionResult> GetPhotosByAlbumId(int albumId)
+        [HttpGet("{eventId}")]
+        public async Task<IActionResult> GetPhotosByEventId(int eventId)
         {
-            var photos = await _photoService.GetPhotosByAlbumId(albumId);
+            var photos = await _photoService.GetPhotosByEventIdAsync(eventId);
             return Ok(photos);
         }
 

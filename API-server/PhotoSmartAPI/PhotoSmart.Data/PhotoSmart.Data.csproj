@@ -19,8 +19,4 @@
     <ProjectReference Include="..\PhotoSmart.Core\PhotoSmart.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

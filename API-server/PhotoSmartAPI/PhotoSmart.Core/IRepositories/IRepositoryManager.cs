@@ -8,10 +8,12 @@ namespace PhotoSmart.Core.IRepositories
 {
     public interface IRepositoryManager
     {
-        IAlbumRepository Album { get; }
+        IEventRepository Event { get; }
         IPhotoRepository Photo { get; }
         IUserRepository User { get; }
-        ITagRepository Tag { get; }
+        IGuestRepository Guest { get; }
+        IAuthRepository Auth { get; }
+
         Task SaveAsync();
     }
 }
