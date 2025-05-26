@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Amazon.S3;
 using Amazon.S3.Model;
+using PhotoSmart.Service.Services;
 
 namespace PhotoSmart.Api.Controllers
 {
@@ -39,6 +40,29 @@ namespace PhotoSmart.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile imageFile)
         {
+        
+            using var httpClient = new HttpClient();
+            var faceRec = new FaceRecognitionService(httpClient);
+            try
+            {
+                string result = await faceRec.UploadImageAsync(imageFile);
+                //return Ok(new { message = "Image uploaded successfully", result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+            //try
+            //{
+            //    string result = await faceRec.UploadImageAsync("path/to/your/image.jpg");
+            //    Console.WriteLine("Image uploaded successfully: " + result);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error: " + ex.Message);
+            //}
+
+
             if (imageFile != null && imageFile.Length > 0)
             {
                 // בדיקת סוג הקובץ
